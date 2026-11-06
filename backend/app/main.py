@@ -10,6 +10,7 @@ from app.api.router import api_router
 from app.core.config import get_settings
 from app.core.exceptions import register_exception_handlers
 from app.core.logging import setup_logging
+from app.db.session import init_db
 
 logger = logging.getLogger(__name__)
 
@@ -18,6 +19,8 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     settings = get_settings()
     logger.info("Starting %s v%s (%s)", settings.app_name, settings.app_version, settings.environment)
+    init_db()
+    logger.info("Database ready")
     yield
     logger.info("Shutting down")
 

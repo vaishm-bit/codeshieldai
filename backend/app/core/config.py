@@ -1,8 +1,13 @@
 """Application configuration loaded from environment variables / .env file."""
 
 from functools import lru_cache
+from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+# backend/ directory (this file lives at backend/app/core/config.py)
+BASE_DIR = Path(__file__).resolve().parents[2]
 
 
 class Settings(BaseSettings):
@@ -19,6 +24,9 @@ class Settings(BaseSettings):
     environment: str = "development"
     debug: bool = False
     log_level: str = "INFO"
+
+    # Leave empty to use the default SQLite file at backend/data/codeshield.db
+    database_url: str = ""
 
     # Stored as a comma-separated string so it is easy to set in a .env file.
     cors_origins: str = "http://localhost:3000,http://localhost:5173"
