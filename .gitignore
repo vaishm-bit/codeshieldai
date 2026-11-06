@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Environment and secrets
+.env
+*.env.local
+
+# Local data
+*.db
+*.sqlite3
+backend/data/
+backend/uploads/
+
+# Node (used in later modules)
+node_modules/
+dist/
+build/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
