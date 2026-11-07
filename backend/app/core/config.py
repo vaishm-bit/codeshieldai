@@ -3,6 +3,7 @@
 from functools import lru_cache
 from pathlib import Path
 
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -30,6 +31,20 @@ class Settings(BaseSettings):
 
     # Stored as a comma-separated string so it is easy to set in a .env file.
     cors_origins: str = "http://localhost:3000,http://localhost:5173"
+
+    # --- AI layer (provider-independent) ---
+    # auto | anthropic | openai_compatible | none. "auto" uses whichever API key is set.
+    ai_provider: str = "auto"
+    anthropic_api_key: SecretStr | None = None
+    anthropic_model: str = "claude-sonnet-5-5"
+    openai_api_key: SecretStr | None = None
+    openai_base_url: str = "https://api.openai.com/v1"
+    openai_model: str = ""
+    openai_max_tokens_param: str = "max_tokens"
+    ai_timeout_seconds: float = 60.0
+    ai_max_retries: int = 2
+    ai_max_input_chars: int = 24000
+    ai_max_output_tokens: int = 3000
 
     @property
     def cors_origin_list(self) -> list[str]:
