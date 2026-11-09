@@ -26,3 +26,10 @@ build/
 .DS_Store
 Thumbs.db
 .idea/
+
+# Not part of this project
+/aiintegrationp1.py
+/final.py
+/test-results.txt
+/tests/
+/code-review-hindsight/
